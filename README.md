@@ -21,6 +21,7 @@ sizer99 [at] sizer99.com
  V1.00 - 2024 Dec 02 - Release by request o-o, add docs,
                        add shutil.which to find robocopy/rsync,
                        add summary view at end
+ V1.01 - 2024 Dec 02 - Small fixes on immediately discovered things
 ```
 
 ## Overview 

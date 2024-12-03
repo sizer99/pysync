@@ -11,7 +11,7 @@
 #   robocopy support was hacked in 8 years ago.
 # ----------------------------------------------------------
 
-VERSION = "v1.00"
+VERSION = "v1.01"
 
 import optparse, os, platform, shutil, subprocess, sys
 import colorama
@@ -48,7 +48,7 @@ PYSYNC_FILE_DIRS = [
 # Options to use for every rsync run
 RSYNC_OPTS = [
     '--recursive', '--update', '--links', '--times',
-    '--omit-dir-times', 
+    '--omit-dir-times', "--safe-links",
     '--del', '--delete-excluded',
     '--info=BACKUP,DEL,COPY,REMOVE',
     # '--ignore-case',  # only valid for cwrsync
