@@ -142,11 +142,11 @@ do it on all of them so you don't forget any.
    
 For windows directory names with \, there are three ways
 to deal with them:
-  - _Do NOT use "c:\foo"_, python will read this as "c:foo"
+  - _Do NOT use `"c:\foo"`_, python will read this as `"c:foo"`
    and things will fail
-  - use raw strings, like r"c:\foo"
-  - change \ to /, like "c:/foo"
-  - double the \\, like "c:\\foo"
+  - use raw strings, like `r"c:\foo"`
+  - change \ to /, like `"c:/foo"`
+  - double the \\, like `"c:\\foo"`
 
 ```
 "exclude files": 
