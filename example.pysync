@@ -1,0 +1,122 @@
+# See pysync.py and readme.txt for details.
+
+# You could override some variables here, see docs
+#
+# If you were using cwrsync on windows, this is where you'd set it
+# ROBOCOPY     = False
+# RSYNC_CMD    = "c:/wherever/cwrsync.exe"
+
+JOBS = [ 
+
+    # whole disk copy only if explicitly invoked
+    {
+        "name": "X to D",
+        "src": "x:/",       # just a string is legal, too
+        "dst": "d:/",
+        "lefttrim": 1,
+        "explicit": True,
+    },
+    
+    # example linux explicit invoke
+    {
+        "name" : "home backup",
+        "src"  : [ "/home/ron" ],
+        "dst"  : [ "/mnt/nas/backup" ],
+        "explicit" : True,
+        "linux only" : True,
+    }
+
+    { 
+        "name": "Daily User",
+        "dst": "w:/daily backups",
+        "src": "c:/Users/sizer",
+        # these huge ones don't need to go daily
+        "exclude dirs": [ "AppData\\Roaming\\Adobe" ],
+        "robocopy": [ "/mt:4", ],
+        # there are active system files in c:/Users that will fail
+        # no matter how many times you try them, ignore it
+        "robocopy ignore active": True,
+        "windows only": True,
+    },
+   
+    { 
+        "name": "Daily Local",
+        "dst": r"w:/daily backups",
+        "src":  [
+            r"y:/_backup_links",
+            r"C:\ron",
+            r"f:\photo",
+            r"f:\manga",
+            r"f:\mp3",
+            r"F:\save",
+            r"F:\txt", ],
+        # these huge ones don't need to go daily
+        "exclude dirs": [ "Python3.12", "D&K", "Mom All Docs",  ],
+        "robocopy": [ "/mt:4", ],
+        "windows only": True,
+    },
+
+    {
+        "name": "Weekly C to T",
+        "src": [ "c:/users/sizer", "c:/ron", "c:/game", "c:/news" ],
+        "dst": "t:/",
+        # don't need to backup marketplace games
+        "exclude dirs"  : [ "emacs*", "python*", 
+          r"c:\game\epic", r"c:\game\bethesda", r"c:\game\steam", r"c:\game\Origin", r"c:\game\ubisoft",
+        ],
+        "robocopy": [ "/mt:4", ],
+        "robocopy ignore active": True,
+    },
+
+    {
+        "name": "Weekly F to T",
+        "src": "f:/",
+        "dst": "t:/",
+        "robocopy": [ "/mt:4", ],
+        "exclude dirs" : ["backups", ],
+    },
+
+    {
+        "name": "Weekly W/Z to T",
+        "src": [ 
+            "w:/_backup_links",
+            "z:/anime",
+            "w:/manga",
+            "w:/mp3",
+            "z:/ron",
+            "z:/server-backup",
+            "w:/web",
+        ],
+        "dst": "T:/",
+        "robocopy": [ "/mt:4", ],
+        "exclude dirs" : [
+            "backups_w",
+            ".wine",
+        ],
+    },
+
+    {
+        "name": "Weekly H to T",
+        "src": "H:/",
+        "dst": "T:/",
+        "exclude dirs" : [ "FLARE", "games" ],
+        "robocopy": [ "/mt:2", ],
+    },
+    {
+        "name": "Weekly V to T",
+        "src": "V:/HyperV",
+        "dst": "T:/",
+        "robocopy": [ "/j", ],  # large files, don't buffer
+    },
+
+    # movies to USB key for TV
+    {   
+        "name": "Movies",
+        "src": "H:/Movies",
+        "dst": "d:/",
+        "lefttrim": 2,  # d:/Movies instead of d:/H/Movies
+        "exclude dirs" : [ "Done", "LG SMart TV" ],
+        "explicit": True,   # only if explicitly asked for
+    },
+
+]
