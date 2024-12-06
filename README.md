@@ -22,6 +22,7 @@ sizer99 [at] sizer99.com
                        add shutil.which to find robocopy/rsync,
                        add summary view at end
  V1.01 - 2024 Dec 02 - Small fixes on immediately discovered things
+ V1.02 - 2024 Dec 06 - Robocopy needs \ for drive or uses cwd
 ```
 
 ## Overview 

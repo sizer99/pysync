@@ -226,14 +226,13 @@ def do_job( job: dict, OPTIONS ) -> ( int, str ):
                     err_str      = f"no source dir '{src}'"
                 continue
 
-            # take any trailing / or \ off the back for ROBOCOPY
-            # or so we can add regardless for rsync
+            # Make sure we take off any ending separator then
+            # add it back on or rsync and robocopy get upset.
+            # This is definitely a TODO with os.path stuff.
             src = src.rstrip( SEPARATOR )
             dst = dst.rstrip( SEPARATOR )
-            if not ROBOCOPY:
-                # but rsync wants these!
-                src = src + SEPARATOR
-                dst = dst + SEPARATOR
+            src = src + SEPARATOR
+            dst = dst + SEPARATOR
 
             print( Color[OK] + f"[{job_name}] '{src}' -> '{dst}'" )
 
